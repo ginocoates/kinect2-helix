@@ -31,8 +31,9 @@ namespace kinect2helix.ViewModel
             this.sensor = KinectSensor.GetDefault();
                       
             // We'll be creating a colour 3D depth map, so listen for color and depth frames
-            this.frameReader = this.sensor.OpenMultiSourceFrameReader(FrameSourceTypes.Infrared | FrameSourceTypes.Depth | FrameSourceTypes.Color);
+            this.frameReader = this.sensor.OpenMultiSourceFrameReader(FrameSourceTypes.Depth | FrameSourceTypes.Color);
 
+            // handle events from Kinect
             this.frameReader.MultiSourceFrameArrived += FrameReader_MultiSourceFrameArrived;
             
             this.sensor.Open();
@@ -98,7 +99,7 @@ namespace kinect2helix.ViewModel
                 // map the depth pixels to CameraSpace for 3D rendering
                 MapperUtils.MapDepthFrameToCameraSpace(this.sensor.CoordinateMapper, kinectData);
 
-                // map color pixels to depth space so we can color the depth map
+                // map depth pixels to colour space so we can color the depth map
                 MapperUtils.MapDepthFrameToColorSpace(this.sensor.CoordinateMapper, kinectData);
                 
                 // update the scene using the kinect data
