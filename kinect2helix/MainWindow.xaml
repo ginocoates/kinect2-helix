@@ -68,18 +68,23 @@
                     </MenuItem>
                 </MenuItem>
             </Menu>
+
             <helix:HelixViewport3D HorizontalAlignment="Stretch"  
-                           VerticalAlignment="Stretch" Background="Silver" x:Name="mainViewport" CameraRotationMode="Turnball">
+                           VerticalAlignment="Stretch" 
+                                   Background="Silver" 
+                                   x:Name="mainViewport" 
+                                   CameraRotationMode="Turnball">
+
                 <helix:HelixViewport3D.DefaultCamera>
                     <PerspectiveCamera
                            Position="0, 0, -2"  
                            LookDirection="0, 0, 1"  
                            UpDirection="0, 1, 0" />
-                  
                 </helix:HelixViewport3D.DefaultCamera>
-                <ModelVisual3D x:Name="skeletonModel" />
-                <helix:DefaultLights></helix:DefaultLights>
+
+                <helix:DefaultLights/>
+
             </helix:HelixViewport3D>
-        </DockPanel>        
+        </DockPanel>
     </Grid>
 </Window>
