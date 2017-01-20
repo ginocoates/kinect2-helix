@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="kinect2helix.Model.PointCloud">
+    <Position X="12.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAEAQAAAAAAgAAAAAAAAAAgAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\PointCloud.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="kinect2helix.Model.PointCloudModel">
+    <Position X="9.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAACAAAAAAAAQAAAAAAAAAAAAgAAAAAAAQ=</HashCode>
+      <FileName>Models\PointCloudModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="pointCloud" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="kinect2helix.KinectData">
+    <Position X="0.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAIAAAAACAAAAAAAAEAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>KinectData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="kinect2helix.MainWindow" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAAAAAAAAAAAEAAAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>MainWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ViewModel" />
+      <Property Name="Viewport" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="kinect2helix.Scene.Kinect2Scene">
+    <Position X="6.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAABAAAAAAAAIAAAAAAABAAAAAAAAA=</HashCode>
+      <FileName>Scenes\Kinect2Scene.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="pointCloudModel" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="kinect2helix.ViewModel.MainViewModel">
+    <Position X="3.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAgAAAAAAAAAAAAAAAAAAAAAAAAAICAAAAAAAAA=</HashCode>
+      <FileName>ViewModel\MainViewModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="sensor" />
+      <Field Name="frameReader" />
+      <Property Name="KinectScene" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="HelixToolkit.Wpf.PointsVisual3D" Collapsed="true">
+    <Position X="12.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="HelixToolkit.Wpf.HelixViewport3D" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="1" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Microsoft.Kinect.KinectSensor" Collapsed="true">
+    <Position X="3.25" Y="5" Width="2.25" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Microsoft.Kinect.MultiSourceFrameReader" Collapsed="true">
+    <Position X="3.25" Y="1" Width="2.25" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="kinect2helix.PointCloudWorker">
+    <Position X="6.5" Y="4.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAAAAAAAAAQAAAAAAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>PointCloudWorker.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -29,13 +29,7 @@ namespace kinect2helix.ViewModel
 
             // create the Kinect sensor
             this.sensor = KinectSensor.GetDefault();
-
-            if (!this.sensor.IsAvailable)
-            {
-                // nothing works without a Kinect!
-                throw new InvalidOperationException("Plug in the Kinect Sensor");
-            }
-
+                      
             // We'll be creating a colour 3D depth map, so listen for color and depth frames
             this.frameReader = this.sensor.OpenMultiSourceFrameReader(FrameSourceTypes.Infrared | FrameSourceTypes.Depth | FrameSourceTypes.Color);
 
