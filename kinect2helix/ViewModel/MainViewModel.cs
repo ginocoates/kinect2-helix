@@ -30,7 +30,7 @@ namespace kinect2helix.ViewModel
             // create the Kinect sensor
             this.sensor = KinectSensor.GetDefault();
 
-            if (this.sensor == null)
+            if (!this.sensor.IsAvailable)
             {
                 // nothing works without a Kinect!
                 throw new InvalidOperationException("Plug in the Kinect Sensor");
