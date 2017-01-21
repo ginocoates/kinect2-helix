@@ -9,7 +9,5 @@ namespace kinect2helix
     public class CloudWorkerArgs
     {
         public KinectData Data { get; set; }
-
-        public int SampleSize { get; set; }
     }
 }

@@ -10,28 +10,29 @@ namespace kinect2helix
     {
         Point[] texturePoints;
         Point3D[] pointCloud;
+        private int[] pointIndexes;
+
+        public PointCloudWorker(int sampleSize)
+        {
+            // select a set of indexes based on the sample size
+            this.pointIndexes = Enumerable.Range(0, Kinect2Metrics.DepthFrameWidth * Kinect2Metrics.DepthFrameHeight)
+                .Where(i => i % sampleSize == 0).ToArray();
+
+            // initialize the arrays of points with empty data
+            this.texturePoints = this.pointIndexes.SelectMany(i => Enumerable.Repeat(new Point(), 4)).ToArray();
+            this.pointCloud = this.pointIndexes.Select(i => new Point3D()).ToArray();
+        }
 
         protected override void OnDoWork(DoWorkEventArgs e)
         {
             // if we have no depth data, just bail here
             var args = e.Argument as CloudWorkerArgs;
             var data = args.Data;
-
-            // select a set of indexes based on the sample size
-            var pointIndexes = Enumerable.Range(0, Kinect2Metrics.DepthFrameWidth * Kinect2Metrics.DepthFrameHeight)
-                .Where(i => i % args.SampleSize == 0).ToArray();
-
-            if (this.texturePoints == null)
-            {
-                // initialize the arrays of points with empty data
-                this.texturePoints = pointIndexes.SelectMany(i => Enumerable.Repeat(new Point(), 4)).ToArray();
-                this.pointCloud = pointIndexes.Select(i => new Point3D()).ToArray();
-            }
-
+            
             // update the texture coordinates and points in parallel
-            Parallel.For(0, pointIndexes.Count(), (i) =>
+            Parallel.For(0, this.pointIndexes.Count(), (i) =>
             {
-                var j = pointIndexes[i];                
+                var j = this.pointIndexes[i];                
 
                 // update texture coordinates, we need four vertices per point in the cloud
                 // however, all texture coordiates can point to the same RGB pixel so the 
@@ -53,9 +54,12 @@ namespace kinect2helix
                 // update the 3D positions in the point cloud
                 var cloudPoint = data.MappedDepthToCameraSpacePixels[j];
 
-                this.pointCloud[i].X = float.IsNegativeInfinity(cloudPoint.X) ? 0 : cloudPoint.X;
-                this.pointCloud[i].Y = float.IsNegativeInfinity(cloudPoint.Y) ? 0 : cloudPoint.Y;
-                this.pointCloud[i].Z = float.IsNegativeInfinity(cloudPoint.Z) ? 0 : cloudPoint.Z;
+                if (!float.IsNegativeInfinity(cloudPoint.X))
+                {
+                    this.pointCloud[i].X = cloudPoint.X;
+                    this.pointCloud[i].Y = cloudPoint.Y;
+                    this.pointCloud[i].Z = cloudPoint.Z;
+                }
             });
 
             // return the result

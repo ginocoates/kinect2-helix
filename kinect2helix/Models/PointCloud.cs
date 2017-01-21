@@ -41,7 +41,7 @@ namespace kinect2helix.Model
             // reverse the model on the x axis so we see what Kinect sees
             this.Model.Transform = new ScaleTransform3D(-1, 1, 1);
 
-            worker = new PointCloudWorker();
+            worker = new PointCloudWorker(this.sampleSize);
             worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
         }
 
@@ -69,8 +69,7 @@ namespace kinect2helix.Model
             // send the data to the worker
             var workerArgs = new CloudWorkerArgs
             {
-                Data = data,
-                SampleSize = this.sampleSize
+                Data = data
             };
 
             this.worker.RunWorkerAsync(workerArgs);
